@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Crystal Collector</title>
+    <!-- Bootstrap File -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootswatch/4.0.0-beta.2/cosmo/bootstrap.min.css" rel="stylesheet" integrity="sha384-52tWTPZ1e5eK+C2aGPCgDjrEgVkKMO+0qDuRNj3tS2EugIrICHWqkGuLu442CP2S" crossorigin="anonymous">
+    <!-- local stylesheets -->
+    <link rel="stylesheet" href="assets/css/reset.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <!-- JQuery -->
+    <script src="https://code.jquery.com/jquery.js"></script>
+</head>
+
+<body>
+    <div class="jumbotron">
+        <div class="container text-center">
+            <h1 class="display-3">CRYSTAL COLLECTA</h1>
+            <p class="lead">Can you collect the right crystals to match the Goal Score?</p>
+            <p class="lighter">Below are four mystic crystals!
+                <br>Unlock their winning mojo by using their mystic properties to match the Vibrational Frequency listed below.
+                <br>By clicking on a crystal, you'll increase your own Vibrational Frequency.
+                <br> You win the game by perfectly matching your personal frequency to the mystic frequency—but you lose the game if your total frequency exceeds the goal.
+                <br> The value of each crystal is hidden, and only revealed by its effect on your frequency value.
+                <br>Each time the game starts, the values of each crystal change!</p>
+                <div id="crystals"></div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="card bg-light col-md-3">
+                <div class="card-body text-center">
+                    <h3>Inspiring wins</h3>
+                    <h1 id="winner">0<h1>
+  </div>
+</div>
+
+            <div class="card text-white bg-primary col-md-3">
+  <div class="card-body text-center">
+    <h4 class="card-title">Mystic Vibrational Frequency</h4>
+    <h1 id="number-goal"><h1>
+  </div>
+</div>
+
+            <div class="card text-white bg-success col-md-3">
+  <div class="card-body text-center">
+    <h4 class="card-title">Personal Vibrational Frequency</h4>
+    <h1 id="personal-num"><h1>
+  </div>
+</div>
+
+                         <div class="card bg-light col-md-3">
+  <div class="card-body text-center">
+                    <h3>Tragic Losses</h3>
+                    <h1 id="loser">0<h1>
+  </div>
+</div>
+
+
+        </div>
+        <div class="row">
+          <div class="panel panel-default col-md-12">
+                <div class="panel-body text-center">
+                  <!-- Note that this div is now empty. We will fill it dynamically -->
+                  <div id="crystals"></div>
+                </div>
+            </div>   
+
+        </div>
+    </div>
+    <script src="assets/javascript/game.js"></script>
+</body>
+
+</html>
+
