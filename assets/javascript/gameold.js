@@ -41,20 +41,17 @@ $(document).ready(function() {
     var counter = 0;
     $("#personal-num").text(counter);
 
-    // somewhat array to store individual image tags
+    // somewhat needless array to produce individual images
     const gemPics = [
         "blu",
         "purp",
         "red",
-        "yel",
-        "ltpurp",
-        "pearl",
-        "gold"
+        "yel"
     ];
 
-    // Create multiple crystals each with their own unique number value, 
-    // tucked inside a function for reset purposes.
-    function generateCrystals() {
+    // Create multiple crystals each with their own unique number value.
+
+    // Next we create a for loop to create crystals for every numberOption.
     for (var i = 0; i < randomGemNumberSet.length; i++) {
 
         // For each iteration, we will create an imageCrystal
@@ -64,11 +61,8 @@ $(document).ready(function() {
         // This will allow the CSS to take effect.
         imageCrystal.addClass("crystal-image");
 
-        // a random number from zero-six to shuffle our gem images
-        var x = randomNumberFromRange(0, 6);
-
         // Each imageCrystal will be given a src link to the crystal image
-        imageCrystal.attr("src", "assets/images/gem_" + gemPics[x] + ".png");
+        imageCrystal.attr("src", "assets/images/gem_" + gemPics[i] + ".png");
 
         // Each imageCrystal will be given a data attribute called data-crystalValue.
         // This data attribute will be set equal to the array value.
@@ -77,17 +71,14 @@ $(document).ready(function() {
         // Lastly, each crystal image (with all it classes and attributes) will get added to the page.
         $("#crystals").append(imageCrystal);
     }
-    }
-
-    generateCrystals();
 
     // Scorekeeping
     let wins = 0;
     let losses = 0;
 
 
-    // capture click event 
-    $(document).on("click", ".crystal-image", function() {
+    // This time, our click event applies to every single crystal on the page. Not just one.
+    $(".crystal-image").on("click", function() {
 
         // Determining the crystal's value requires us to extract the value from the data attribute.
         // Using the $(this) keyword specifies that we should be extracting the crystal value of the clicked crystal.
@@ -96,7 +87,6 @@ $(document).ready(function() {
 
         var crystalValue = ($(this).attr("data-crystalvalue"));
         crystalValue = parseInt(crystalValue);
-
         // We then add the crystalValue to the user's "counter" which is a global variable.
         // Every click, from every crystal adds to the global counter.
         counter += crystalValue;
@@ -105,10 +95,24 @@ $(document).ready(function() {
 
         $("#personal-num").text(counter);
 
+        // function to reset the game
+
+        function gameReset() {
+        	
+        	            counter = 0;
+            randomGoalNumber = randomNumberFromRange(goalMinNumber, goalMaxNumber);
+            $("#personal-num").text(counter);
+            $("#number-goal").text(randomGoalNumber);
+            randomGemNumberSet = [];
+            gemNumberMaker();
+            console.log(randomGoalNumber);
+            console.log(randomGemNumberSet);
+        }
+
         // if/else to test if our personal score equals the goal number
 
         if (counter === randomGoalNumber) {
-            alert("Alignment achieved!\n\nTry again to increase your astral harmonic.\n\nHere's some new crystals for you.");
+            alert("You win, you crafty old dog!");
             wins++;
             $("#winner").text(wins);
             gameReset();
@@ -116,7 +120,7 @@ $(document).ready(function() {
         } 
 
         else if (counter >= randomGoalNumber) {
-            alert("What's the frequency, Kenneth??\n\nWell, you've lost this time–-But why not try again?\n\nHere's some new crystals for you.");
+            alert("You lose!!");
             losses++;
             $("#loser").text(losses);
             gameReset();
@@ -124,20 +128,5 @@ $(document).ready(function() {
         }
 
     });
-
-        // function to reset the game
-    function gameReset() {	
-        counter = 0;
-        $("#personal-num").text(counter);
-        randomGoalNumber = randomNumberFromRange(goalMinNumber, goalMaxNumber);
-        $("#number-goal").text(randomGoalNumber);
-        randomGemNumberSet = [];
-        gemNumberMaker();
-        console.log(randomGoalNumber);
-        console.log(randomGemNumberSet);
-        $("#crystals").empty();
-        generateCrystals();
-    }
-
 
 });
